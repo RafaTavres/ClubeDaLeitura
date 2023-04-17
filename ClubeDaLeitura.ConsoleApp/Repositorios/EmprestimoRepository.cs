@@ -1,4 +1,5 @@
-﻿using ClubeDaLeitura.ConsoleApp.RegrasDeNogocio;
+﻿using ClubeDaLeitura.ConsoleApp.ClassesPais;
+using ClubeDaLeitura.ConsoleApp.RegrasDeNogocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,58 +12,26 @@ namespace ClubeDaLeitura.ConsoleApp.Repositorios
     {
         public void InserirEmprestimo(Emprestimo emprestimo)
         {
-            emprestimo.id = id;
-            listaEntidades.Add(emprestimo);
-            IncrementaId();
+            Inserir(emprestimo);
         }
         public List<Object> RetornarTodososEmprestimos()
         {
             return listaEntidades;
         }
-        public void AtualizaEmprestimo(int id,Emprestimo emprestimo)
+        public void AtualizaEmprestimo(int id,Emprestimo emprestimoAtualizado)
         {
-            foreach (Emprestimo e in listaEntidades)
-            {
-                if (BuscaEmprestimo(id).Equals(e))
-                {
-                    e.emAberto = true;
-                    e.amigoQueEmprestou = emprestimo.amigoQueEmprestou;
-                    e.revistaEmprestada = emprestimo.revistaEmprestada;
-                    e.dataDoEmpresimo = emprestimo.dataDoEmpresimo;
-                    e.dataDeDevolução = emprestimo.dataDeDevolução;
-
-                }
-            }
-        }
-        public  Emprestimo BuscaEmprestimo(int id)
-        {
-            Emprestimo emprestimo = null;
-            foreach (Emprestimo e in listaEntidades)
-            {
-                if (e.id == id)
-                {
-                    emprestimo = e;
-                    return emprestimo;
-                }
-            }
-            return emprestimo;
+            Entidade emprestimo = (Emprestimo)Busca(id);
+            emprestimo.Atualizar(emprestimoAtualizado);
         }
         public void DeletaEmprestimo(int id)
         {
-            foreach (Emprestimo r in listaEntidades)
-            {
-                if (BuscaEmprestimo(id).Equals(r))
-                {
-                    listaEntidades.Remove(r);
-                    break;
-                }
-            }
+            Deletar(id);
         }
         public void FechaEmprestimo(int id)
         {
             foreach (Emprestimo r in listaEntidades)
             {
-                if (BuscaEmprestimo(id).Equals(r))
+                if (Busca(id).Equals(r))
                 {
                     r.emAberto = false;
                     break;

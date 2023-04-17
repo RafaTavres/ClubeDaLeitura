@@ -1,4 +1,5 @@
-﻿using ClubeDaLeitura.ConsoleApp.RegrasDeNogocio;
+﻿using ClubeDaLeitura.ConsoleApp.ClassesPais;
+using ClubeDaLeitura.ConsoleApp.RegrasDeNogocio;
 using ClubeDaLeitura.ConsoleApp.Repositorios;
 using System;
 using System.Collections;
@@ -15,51 +16,20 @@ namespace ClubeDaLeitura.ConsoleApp
          public CaixaRepository repositorioCaixa = null;
          public void InseriraRevista(Revista revista)
         {
-            revista.id = id;
-            listaEntidades.Add(revista);
-            IncrementaId();
+            Inserir(revista);
         }
          public List<Object> RetornarTodosAsRevistas()
         {
             return listaEntidades;
         }
-         public void AtualizarRevistas(int id, Revista revista)
+         public void AtualizarRevistas(int id, Revista revistaAtualizada)
         {
-            foreach (Revista r in listaEntidades)
-            {
-                if (BuscaRevista(id).Equals(r))
-                {
-                    r.estaEmprestada = revista.estaEmprestada;
-                    r.edicao = revista.edicao;
-                    r.colecao = revista.colecao;
-                    r.anoDaRevista = revista.anoDaRevista;
-                    r.caixa = repositorioCaixa.BuscaCaixas(id);
-                }
-            }
-        }
-        public  Revista BuscaRevista(int id)
-        {
-            Revista revista = null;
-            foreach (Revista r in listaEntidades)
-            {
-                if (r.id == id)
-                {
-                    revista = r;
-                    return revista;
-                }
-            }
-            return revista;
+            Entidade revista = (Revista)Busca(id);
+            revista.Atualizar(revistaAtualizada);
         }
         public void DeletaRevista(int id)
         {
-            foreach (Revista r in listaEntidades)
-            {
-                if (BuscaRevista(id).Equals(r))
-                {
-                    listaEntidades.Remove(r);
-                    break;
-                }
-            }
+            Deletar(id);
         }
     }
 }

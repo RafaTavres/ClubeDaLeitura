@@ -9,5 +9,11 @@ namespace ClubeDaLeitura.ConsoleApp.ClassesPais
     internal class Entidade
     {
         public int id;
+
+        public virtual void Atualizar(Entidade entidadeAtualizada)
+        {
+            id = entidadeAtualizada.id;
+        }
     }
+
 }

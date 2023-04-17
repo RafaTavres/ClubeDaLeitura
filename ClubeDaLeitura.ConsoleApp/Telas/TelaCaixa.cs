@@ -61,7 +61,7 @@ namespace ClubeDaLeitura.ConsoleApp
             Console.WriteLine("____________________________________________________________________________");
             if (repositorioCaixa.MostraTodasAsCaixas().Count == 0)
             {
-                ApresentaMensagem("Nenhua Caixa Registradada", ConsoleColor.DarkYellow);
+                ApresentaMensagem("Nenhuma Caixa Registradada", ConsoleColor.DarkYellow);
             }
             else
             {

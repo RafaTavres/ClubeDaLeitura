@@ -15,5 +15,14 @@ namespace ClubeDaLeitura.ConsoleApp
         public string telefone;
         public Endereco endereco;
 
+        public override void Atualizar(Entidade entidadeAtualizada)
+        {
+            Amigo amigo = (Amigo)entidadeAtualizada;
+            nome = amigo.nome;
+            nomeDoResponsavel = amigo.nomeDoResponsavel;
+            telefone = amigo.telefone;
+            endereco = amigo.endereco;
+        }
+
     }
 }

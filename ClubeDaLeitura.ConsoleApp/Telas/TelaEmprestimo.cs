@@ -102,7 +102,7 @@ namespace ClubeDaLeitura.ConsoleApp
             {
                 foreach (Emprestimo e in repositorioEmprestimo.RetornarTodososEmprestimos())
                 {
-                    Console.WriteLine($"id: {e.id} | Amigo: {e.amigoQueEmprestou.nome} | Edição da Revista : {e.revistaEmprestada.edicao} | Ano da Revista: {e.revistaEmprestada.anoDaRevista.ToString("dd/MM/yyyy")} | Data do Emprestimo :{e.dataDoEmpresimo.ToString("dd/MM/yyyy")} |  Data da Devolução :{e.dataDeDevolução.ToString("dd/mm/yyyy")} | Em aberto: {e.emAberto} ");
+                    Console.WriteLine($"id: {e.id} | Amigo: {e.amigoQueEmprestou.nome} | Edição da Revista : {e.revistaEmprestada.edicao} | Ano da Revista: {e.revistaEmprestada.anoDaRevista.ToString("dd/MMM/yyyy")} | Data do Emprestimo :{e.dataDoEmpresimo.ToString("dd/MMM/yyyy")} |  Data da Devolução :{e.dataDeDevolução.ToString("dd/MMM/yyyy")} | Em aberto: {e.emAberto} ");
                 }
 
             }
@@ -121,7 +121,7 @@ namespace ClubeDaLeitura.ConsoleApp
                 {
                     if(e.emAberto == true)
                     {
-                        Console.WriteLine($"id: {e.id} | Amigo: {e.amigoQueEmprestou.nome} | Edição da Revista : {e.revistaEmprestada.edicao} | Ano da Revista: {e.revistaEmprestada.anoDaRevista.ToString("dd/MM/yyyy")} | Data do Emprestimo :{e.dataDoEmpresimo.ToString("dd/MM/yyyy")} |  Data da Devolução :{e.dataDeDevolução.ToString("dd/mm/yyyy")} | Em aberto: {e.emAberto} ");
+                        Console.WriteLine($"id: {e.id} | Amigo: {e.amigoQueEmprestou.nome} | Edição da Revista : {e.revistaEmprestada.edicao} | Ano da Revista: {e.revistaEmprestada.anoDaRevista.ToString("dd/MMM/yyyy")} | Data do Emprestimo :{e.dataDoEmpresimo.ToString("dd/MMM/yyyy")} |  Data da Devolução :{e.dataDeDevolução.ToString("dd/MMM/yyyy")} | Em aberto: {e.emAberto} ");
                     }
                 }
 
@@ -129,7 +129,7 @@ namespace ClubeDaLeitura.ConsoleApp
         }
         private void MostraTodosOsEmprestimosFechados()
         {
-            Console.WriteLine("Emprestimos em aberto: ");
+            Console.WriteLine("Emprestimos Fechados: ");
             Console.WriteLine("____________________________________________________________________________");
             if (repositorioEmprestimo.RetornarTodososEmprestimos().Count == 0)
             {
@@ -141,7 +141,7 @@ namespace ClubeDaLeitura.ConsoleApp
                 {
                     if (e.emAberto == false)
                     {
-                        Console.WriteLine($"id: {e.id} | Amigo: {e.amigoQueEmprestou.nome} | Edição da Revista : {e.revistaEmprestada.edicao} | Ano da Revista: {e.revistaEmprestada.anoDaRevista.ToString("dd/MM/yyyy")} | Data do Emprestimo :{e.dataDoEmpresimo.ToString("dd/MM/yyyy")} |  Data da Devolução :{e.dataDeDevolução.ToString("dd/mm/yyyy")} | Em aberto: {e.emAberto} ");
+                        Console.WriteLine($"id: {e.id} | Amigo: {e.amigoQueEmprestou.nome} | Edição da Revista : {e.revistaEmprestada.edicao} | Ano da Revista: {e.revistaEmprestada.anoDaRevista.ToString("dd/MMM/yyyy")} | Data do Emprestimo :{e.dataDoEmpresimo.ToString("dd/MMM/yyyy")} |  Data da Devolução :{e.dataDeDevolução.ToString("dd/MMM/yyyy")} | Em aberto: {e.emAberto} ");
                     }
                 }
 
@@ -177,14 +177,14 @@ namespace ClubeDaLeitura.ConsoleApp
             Console.WriteLine("");
             Console.WriteLine("id do amigo que emprestou : ");
             int idAmigo = Convert.ToInt32(Console.ReadLine());
-            novoEmprestimo.amigoQueEmprestou = repositorioAmigo.BuscaAmigos(idAmigo);
+            novoEmprestimo.amigoQueEmprestou = (Amigo)repositorioAmigo.Busca(idAmigo);
             Console.Clear();
             telaRevista.MostraTodosAsRevistas();
             Console.WriteLine("____________________________________________________________________________");
             Console.WriteLine("");
             Console.WriteLine("id da revista para emprestar : ");
             int idRevista = Convert.ToInt32(Console.ReadLine());           
-            novoEmprestimo.revistaEmprestada = repositorioRevista.BuscaRevista(idRevista);
+            novoEmprestimo.revistaEmprestada =(Revista)repositorioRevista.Busca(idRevista);
             Console.WriteLine("Data do emprestimo: ");
             novoEmprestimo.dataDoEmpresimo = Convert.ToDateTime(Console.ReadLine());
             Console.WriteLine("Data da Devolução: ");

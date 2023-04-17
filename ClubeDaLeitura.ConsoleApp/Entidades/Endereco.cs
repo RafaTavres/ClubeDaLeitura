@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace ClubeDaLeitura.ConsoleApp.RegrasDeNogocio
 {
-    internal class Endereco : Entidade
+    internal class Endereco
     {
         public string rua;
         public string bairro;

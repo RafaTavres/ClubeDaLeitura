@@ -1,4 +1,5 @@
-﻿using ClubeDaLeitura.ConsoleApp.RegrasDeNogocio;
+﻿using ClubeDaLeitura.ConsoleApp.ClassesPais;
+using ClubeDaLeitura.ConsoleApp.RegrasDeNogocio;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,51 +12,21 @@ namespace ClubeDaLeitura.ConsoleApp.Repositorios
     {
         public void InserirCaixas(CaixaDeRevistas caixaRevistas)
         {
-            caixaRevistas.id = id;
-            listaEntidades.Add(caixaRevistas);
-            IncrementaId();
+            Inserir(caixaRevistas);
         }
 
         public List<Object> MostraTodasAsCaixas()
         {
             return listaEntidades;
         }
-        public void AtualizaCaixas(int id, CaixaDeRevistas caixaRevistas)
+        public void AtualizaCaixas(int id, CaixaDeRevistas caixaRevistasAtualizada)
         {
-            foreach (CaixaDeRevistas c in listaEntidades)
-            {
-                if (BuscaCaixas(id).Equals(c))
-                {
-                    c.cor = caixaRevistas.cor;
-                    c.etiqueta= caixaRevistas.etiqueta;
-                    c.numero = caixaRevistas.numero;
-                }
-            }
+            Entidade caixa  = (CaixaDeRevistas)Busca(id);
+            caixa.Atualizar(caixaRevistasAtualizada);
         }
         public void DeletaCaixas(int id)
         {
-            foreach (CaixaDeRevistas c in listaEntidades)
-            {
-                if (BuscaCaixas(id).Equals(c))
-                {
-                    listaEntidades.Remove(c);
-                    break;
-                }
-            }
-        }
-        public CaixaDeRevistas BuscaCaixas(int id)
-        {
-            CaixaDeRevistas caixa = null;
-
-            foreach (CaixaDeRevistas c in listaEntidades)
-            {
-                if (c.id == id)
-                {
-                    caixa = c;
-                    return caixa;
-                }
-            }
-            return caixa;
+            Deletar(id);
         }
     }
 }

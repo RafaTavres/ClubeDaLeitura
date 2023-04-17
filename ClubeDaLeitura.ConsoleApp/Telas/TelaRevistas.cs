@@ -78,7 +78,7 @@ namespace ClubeDaLeitura.ConsoleApp
             {
                 foreach (Revista a in repositorioDeRevista.RetornarTodosAsRevistas())
                 {
-                    Console.WriteLine($"id: {a.id} | Edição: {a.edicao} | Coleção : {a.colecao} | Ano da Revista: {a.anoDaRevista.ToString("dd/MM/yyyy")} | Etique da Caixa :{a.caixa.etiqueta}");
+                    Console.WriteLine($"id: {a.id} | Edição: {a.edicao} | Coleção : {a.colecao} | Ano da Revista: {a.anoDaRevista.ToString("dd/MMM/yyyy")} | Etique da Caixa :{a.caixa.etiqueta}");
                 }
             }
         }
@@ -111,7 +111,7 @@ namespace ClubeDaLeitura.ConsoleApp
             Console.WriteLine("");
             Console.WriteLine("id da Caixa que deseja a Colocar a Revista");
             int id = Convert.ToInt32(Console.ReadLine());     
-            novaRevista.caixa = repositorioDeCaixas.BuscaCaixas(id);
+            novaRevista.caixa = (CaixaDeRevistas)repositorioDeCaixas.Busca(id);
             if (VerificaObjetosValidos(novaRevista.caixa) == true)
             {
                 return novaRevista;

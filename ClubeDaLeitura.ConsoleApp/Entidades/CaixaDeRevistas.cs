@@ -13,5 +13,12 @@ namespace ClubeDaLeitura.ConsoleApp.RegrasDeNogocio
         public string cor;
         public string etiqueta;
 
+        public override void Atualizar(Entidade entidadeAtualizada)
+        {
+            CaixaDeRevistas caixaDeRevistas = (CaixaDeRevistas)entidadeAtualizada;
+            numero = caixaDeRevistas.numero;
+            cor = caixaDeRevistas.cor;
+            etiqueta = caixaDeRevistas.etiqueta;
+        }
     }
 }
