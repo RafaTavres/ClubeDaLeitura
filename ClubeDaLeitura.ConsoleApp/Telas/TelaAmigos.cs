@@ -15,9 +15,7 @@ namespace ClubeDaLeitura.ConsoleApp
          {          
             do
             {
-                Console.Clear();
-                Console.WriteLine("----Menu Amigo----\n");
-                Console.WriteLine("1- Adicionar | 2- Todos os Amigos | 3- Atualizar Amigo | 4- Deleta amigo | S- Sair");
+                Menu("Amigos");
                 opcao = Console.ReadLine();
                 if (opcao == "1")
                 {
@@ -48,8 +46,8 @@ namespace ClubeDaLeitura.ConsoleApp
         }
         private void AdicionaAmigo()
         {
-            Amigo novoAmigo =  PegaDadosDoAmigo();
-            repositorioAmigo.InseriraAmigo(novoAmigo);
+            Amigo novoAmigo = (Amigo)PegaDados();
+            Adiciona(repositorioAmigo,novoAmigo);
         }
         public void MostraTodosOsAmigos()
         {
@@ -74,7 +72,7 @@ namespace ClubeDaLeitura.ConsoleApp
             Console.WriteLine();
             Console.WriteLine("Id para Editar: ");
             int idParaEditar = Convert.ToInt32(Console.ReadLine());
-            Amigo amigo = PegaDadosDoAmigo();
+            Amigo amigo = (Amigo)PegaDados();
             repositorioAmigo.AtualizarAmigos(idParaEditar,amigo);
         }
         private void DeletaAmigo()
@@ -85,7 +83,7 @@ namespace ClubeDaLeitura.ConsoleApp
             int idParaDeletar = Convert.ToInt32(Console.ReadLine());
             repositorioAmigo.DeletarAmigos(idParaDeletar);
         }
-        private Amigo PegaDadosDoAmigo()
+        public override Entidade PegaDados()
         {
             Console.Clear();
             Amigo novoAmigo = new Amigo();            

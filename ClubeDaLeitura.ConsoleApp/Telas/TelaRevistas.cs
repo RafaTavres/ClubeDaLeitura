@@ -20,9 +20,7 @@ namespace ClubeDaLeitura.ConsoleApp
         {          
             do
             {
-                Console.Clear();
-                Console.WriteLine("----Menu Revista----\n");
-                Console.WriteLine("1- Adicionar | 2- Todos os Revista | 3- Atualizar Revista | 4- Deleta Revista | S- Sair");
+                Menu("Revistas");
                 opcao = Console.ReadLine();
                 if (opcao == "1")
                 {
@@ -54,8 +52,8 @@ namespace ClubeDaLeitura.ConsoleApp
 
         private void AdicionaRevista()
         {
-            Revista revista = PegaDadosDaRevista();
-            if(revista == null)
+            Revista revista = (Revista)PegaDados();
+            if (revista == null)
             {               
                 ApresentaMensagem("Erro Revista deve possuir uma caixa!", ConsoleColor.DarkRed);
             }
@@ -86,7 +84,7 @@ namespace ClubeDaLeitura.ConsoleApp
         {
             Console.WriteLine("Id para Editar: ");
             int idParaEditar = Convert.ToInt32(Console.ReadLine());
-            Revista revista = PegaDadosDaRevista();
+            Revista revista = (Revista)PegaDados();
             repositorioDeRevista.AtualizarRevistas(idParaEditar,revista);
         }
         private void DeletaRevista()
@@ -95,7 +93,7 @@ namespace ClubeDaLeitura.ConsoleApp
             int idParaDeletar = Convert.ToInt32(Console.ReadLine());
             repositorioDeRevista.DeletaRevista(idParaDeletar);
         }
-        private Revista PegaDadosDaRevista()
+        public override Entidade PegaDados()
         {
             Revista novaRevista = new Revista();
             novaRevista.estaEmprestada = false;

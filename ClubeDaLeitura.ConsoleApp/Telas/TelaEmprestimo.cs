@@ -20,9 +20,7 @@ namespace ClubeDaLeitura.ConsoleApp
         {        
             do
             {
-                Console.Clear();
-                Console.WriteLine("----Menu Emprestimo----\n");
-                Console.WriteLine("1- Adicionar | 2- Todos os Emprestimos | 3- Atualizar Emprestimo | 4- Deleta Emprestimo | 5- Fecha Emprestimo | 6- Mostra Emprestimos Abertos | 7- Mostra Emprestimos Fechados | S- Sair");
+                Menu("Emprestimos");
                 opcao = Console.ReadLine();
                 if (opcao == "1")
                 {
@@ -70,7 +68,7 @@ namespace ClubeDaLeitura.ConsoleApp
         }
         private void AdicionaEmprestimo()
         {
-            Emprestimo emprestimo = PegaDadosDoEmprestimo();
+            Emprestimo emprestimo = (Emprestimo)PegaDados();
             if(emprestimo == null)
             {
                 ApresentaMensagem("Emprestimo com erro, verefique se amigo e a revista estão registadros",ConsoleColor.DarkRed);
@@ -151,7 +149,7 @@ namespace ClubeDaLeitura.ConsoleApp
         {
              Console.WriteLine("Id para Editar: ");
              int idParaEditar = Convert.ToInt32(Console.ReadLine());
-             Emprestimo emprestimo = PegaDadosDoEmprestimo();
+             Emprestimo emprestimo = (Emprestimo)PegaDados();
              repositorioEmprestimo.AtualizaEmprestimo(idParaEditar,emprestimo);
             
         }
@@ -167,7 +165,7 @@ namespace ClubeDaLeitura.ConsoleApp
             int idParaFechar = Convert.ToInt32(Console.ReadLine());
             repositorioEmprestimo.FechaEmprestimo(idParaFechar);
         }
-        private  Emprestimo PegaDadosDoEmprestimo()
+        public override Entidade PegaDados()
         {
             Emprestimo novoEmprestimo= new Emprestimo();
             novoEmprestimo.emAberto = true;

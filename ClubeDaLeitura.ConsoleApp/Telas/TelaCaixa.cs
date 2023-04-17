@@ -18,9 +18,7 @@ namespace ClubeDaLeitura.ConsoleApp
 
             do           
             {
-                Console.Clear();
-                Console.WriteLine("----Menu Caixa----\n");
-                Console.WriteLine("1- Adicionar | 2- Todos as Caixas | 3- Atualizar Caixa | 4- Deleta Caixa | S- Sair");
+                Menu("Caixas");
                 opcao = Console.ReadLine();
                 if (opcao == "1")
                 {
@@ -51,8 +49,8 @@ namespace ClubeDaLeitura.ConsoleApp
         }
         private void AdicionaCaixas()
         {
-            CaixaDeRevistas caixaDeRevistas = PegaDadosDaCaixa();
-            repositorioCaixa.InserirCaixas(caixaDeRevistas);
+            CaixaDeRevistas caixaDeRevistas = (CaixaDeRevistas)PegaDados();
+            Adiciona(repositorioCaixa, caixaDeRevistas);
         }
 
         public void MostraTodasAsCaixas()
@@ -75,7 +73,7 @@ namespace ClubeDaLeitura.ConsoleApp
         {
             Console.WriteLine("Id para Editar: ");
             int idParaEditar = Convert.ToInt32(Console.ReadLine());
-            CaixaDeRevistas caixaDeRevistas = PegaDadosDaCaixa();
+            CaixaDeRevistas caixaDeRevistas = (CaixaDeRevistas)PegaDados();
             repositorioCaixa.AtualizaCaixas(idParaEditar, caixaDeRevistas);
         }
         private void DeletaCaixas()
@@ -84,7 +82,7 @@ namespace ClubeDaLeitura.ConsoleApp
             int idParaDeletar = Convert.ToInt32(Console.ReadLine());
             repositorioCaixa.DeletaCaixas(idParaDeletar);
         }
-        private CaixaDeRevistas PegaDadosDaCaixa()
+        public override Entidade PegaDados()
         {
             CaixaDeRevistas novaCaixa = new CaixaDeRevistas();
             Console.WriteLine("Cor da Caixa: ");
